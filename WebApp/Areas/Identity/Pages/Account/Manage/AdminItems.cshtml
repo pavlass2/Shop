@@ -1,0 +1,20 @@
+﻿@page
+@model AdminItemsModel
+@inject IDataAcces DataAcces
+
+<div class="one-item-content">
+    <h2>Items</h2>
+    <br />
+    <table class="table">
+        @{
+            foreach (Item item in Model.Items)
+            {
+                <tr>
+                    <td><a asp-area="Identity" asp-page="Account/Manage/Details" asp-route-id="@item.EncryptedId">@item.ItemName by @DataAcces.GetAuthor(item.AuthorId).Name</a></td>
+                    <td><a asp-page="EditItem" asp-route-id="@item.Id">Edit</a></td>
+                    <td><a asp-page="DeleteItem" asp-route-id="@item.EncryptedId">Delete</a></td>
+                </tr>
+            }
+        }
+    </table>
+</div>

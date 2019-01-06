@@ -1,0 +1,73 @@
+﻿@page
+@model WebApp.Pages.EditItemModel
+@{
+    ViewData["Title"] = "Edit Item";
+}
+<div class="one-item-content">
+    <h2>EditItem</h2>
+
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Item.Id" />
+        <input type="hidden" asp-for="Item.EncryptedId" />
+        <input asp-for="Item.PicturePath" type="hidden" />
+
+        <div>
+            <label asp-for="Item.ItemName"></label>
+            <input asp-for="Item.ItemName" size="50" />
+            <span asp-validation-for="Item.ItemName"></span>
+        </div>
+        <div>
+            <h5>Author:</h5>
+            @foreach (Author author in Model.Authors)
+            {
+                <div class="form-small-group">
+                    <input asp-for="Item.AuthorId" id="@author.Id" type="radio" value="@author.Id" />
+                    <label for="@author.Id">@author.Name</label>
+                </div>
+            }
+        </div>
+        <div>
+            <h5>Language:</h5>
+            @foreach (var item in Html.GetEnumSelectList<Lang>())
+            {
+                <div class="form-small-group">
+                    <input asp-for="Item.Language" id="@item.Text" type="radio" value="@item.Text" />
+                    <label for="@item.Text">@item.Text</label>
+                </div>
+            }
+        </div>
+        <div>
+            <h5>Category:</h5>
+            @foreach (var item in Html.GetEnumSelectList<Category>())
+            {
+                <div class="form-small-group">
+                    <input asp-for="Item.Category" id="@item.Text" type="radio" value="@item.Text" />
+                    <label for="@item.Text">@item.Text</label>
+                </div>
+            }
+        </div>
+
+        <div>
+            <label asp-for="Item.Descriotion"></label>
+            <textarea asp-for="Item.Descriotion" rows="6" cols="100"></textarea>
+            <span asp-validation-for="Item.Descriotion"></span>
+        </div>
+        <div>
+            <label asp-for="Item.Price"></label>
+            <input asp-for="Item.Price" />
+            <span asp-validation-for="Item.Price"></span>
+        </div>
+        <div>
+            <img src="@Model.Item.PicturePath" alt="No image available" width="100" height="100" />
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="file" name="file" />
+
+            </div>
+        </div>
+
+        <input type="submit" name="save" value="Save" />
+    </form>
+</div>

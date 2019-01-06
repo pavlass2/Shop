@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Vlasta's Bookshop</title>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script asp-src-include="~/scripts/*.js"></script>
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script asp-src-include="~/js/bundle.js"></script>
+
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+</head>
+<body>
+    <div class="body-wrap">
+        <div class="container">
+            <nav class="navbar navbar-inverse" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a asp-page="/Index" class="navbar-brand dropdown-toggle">The Vlasta's Bookshop <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/About">About us</a></li>
+                                    <li><a asp-page="/Contact">Contacts</a></li>
+                                    <li><a href="https://vysvobozena.blogspot.com/">Blog</a></li>
+                                </ul>
+                            </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                
+                            }
+                            <li class="dropdown">
+                                <a asp-page="/Czech" class="dropdown-toggle">in Czech<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/Classic" asp-route-lang="@Lang.cze">Classic</a></li>
+                                    <li><a asp-page="/Fantasy" asp-route-lang="@Lang.cze">Fantasy</a></li>
+                                    <li><a asp-page="/HistoryFiction" asp-route-lang="@Lang.cze">History Fiction</a></li>
+                                    <li><a asp-page="/ScienceFiction" asp-route-lang="@Lang.cze">Science Fiction</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-page="/Workbook" asp-route-lang="@Lang.cze">Workbook</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a asp-page="/German" class="dropdown-toggle">in German<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/Classic" asp-route-lang="@Lang.ger">Classic</a></li>
+                                    <li><a asp-page="/Fantasy" asp-route-lang="@Lang.ger">Fantasy</a></li>
+                                    <li><a asp-page="/HistoryFiction" asp-route-lang="@Lang.ger">History Fiction</a></li>
+                                    <li><a asp-page="/ScienceFiction" asp-route-lang="@Lang.ger">Science Fiction</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-page="/Workbook" asp-route-lang="@Lang.ger">Workbook</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a asp-page="/English" class="dropdown-toggle">in English<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-page="/Classic" asp-route-lang="@Lang.eng">Classic</a></li>
+                                    <li><a asp-page="/Fantasy" asp-route-lang="@Lang.eng">Fantasy</a></li>
+                                    <li><a asp-page="/HistoryFiction" asp-route-lang="@Lang.eng">History Fiction</a></li>
+                                    <li><a asp-page="/ScienceFiction" asp-route-lang="@Lang.eng">Science Fiction</a></li>
+                                    <li class="divider"></li>
+                                    <li><a asp-page="/Workbook" asp-route-lang="@Lang.eng">Workbook</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <partial name="_LoginPartial" />
+
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+            <div class="container body-content">
+                @RenderBody()
+
+
+            </div>
+            <footer>
+                <br />
+                <p>&copy; @DateTime.Today.Year - Pavel Skála</p>
+            </footer>
+        </div>
+
+    </div>
+
+    <!--<partial name="_CookieConsentPartial" />-->
+
+
+
+    
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

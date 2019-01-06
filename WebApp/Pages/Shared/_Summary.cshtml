@@ -1,0 +1,17 @@
+﻿@model Item
+@inject IDataAcces DataAcces
+
+<section>
+
+    <div>
+        <a asp-page="Details" asp-route-id="@Model.EncryptedId"><h4>@Model.ItemName</h4></a>
+    </div>
+
+    <div>
+        <a asp-page="Details" asp-route-id="@Model.EncryptedId"><img src="@Model.PicturePath" alt="No image available" width="200" height="300" /></a>
+        <h4>@DataAcces.GetAuthor(Model.AuthorId).Name</h4>
+    </div>
+
+    <p>@Model.Descriotion</p>
+
+</section>

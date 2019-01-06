@@ -1,0 +1,49 @@
+﻿@page
+@model OrderSummaryModel
+@{
+}
+
+<div class="one-item-content">
+    <h4>Thank you for your order. We will be dispatching it as shortly as possible.</h4>
+    @{
+        foreach (ItemInShoppingCart itemInShoppingCart in Model.ShoppingCart.ItemsInShoppingCart)
+        {
+
+            <div class="items-in-shopping-cart">
+
+                <table>
+                    <tr class="tr-item" id="@itemInShoppingCart.CryptedId">
+                        <td class="in-cart-count" id="@itemInShoppingCart.CryptedId">
+                            @itemInShoppingCart.Count<text>x</text>
+                        </td>
+                        <td>
+                            <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId"><img src="@itemInShoppingCart.PicturePath" alt="No image available" width="100" height="150" /> </a>
+                        </td>
+                        <td class="fill">
+                            <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId">@itemInShoppingCart.Name</a>
+                        </td>
+                        <td>
+                            @{
+                                if (itemInShoppingCart.Count > 1)
+                                {
+                                    <div class="in-cart-price" id="@itemInShoppingCart.CryptedId">total $@itemInShoppingCart.Price</div>
+                                }
+                                else
+                                {
+                                    <div>$@itemInShoppingCart.Price</div>
+                                }
+                            }
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+        }
+        <div><p>Chosed delivery: @Model.Order.Delivery</p></div>
+        <div><p>Chosed payment: @Model.Order.Payment</p></div>
+        <div><p>Send to:</p></div>
+        <div><p>@Model.Order.FirstName @Model.Order.SecondName</p></div>
+        <div><p>@Model.Order.AddressCity @Model.Order.AddressStreet @Model.Order.AddressHouseNumber @Model.Order.AddressZip @Model.Order.AddressCountry</p></div>
+    }
+</div>

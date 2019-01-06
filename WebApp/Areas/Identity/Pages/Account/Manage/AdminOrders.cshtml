@@ -1,0 +1,28 @@
+﻿@page
+@model AdminOrdersModel
+
+<div class="one-item-content">
+    <table class="orders">
+        <tr>
+            <th>Id</th>
+            <th>Date ordered</th>
+            <th>Customer name</th>
+            <th>Price</th>
+            <th>State</th>
+        </tr>
+        @{
+            foreach (Order order in Model.Orders)
+            {
+                <tr class="orders">
+                    <td>@order.Id</td>
+                    <td>@order.DateTimeOrdered</td>
+                    <td>@order.CustomerName</td>
+                    <td>@order.TotalPrice</td>
+                    <td>@order.State</td>
+                    <td><a asp-page="AdminOrder" asp-route-id="@order.Id">Show order</a></td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

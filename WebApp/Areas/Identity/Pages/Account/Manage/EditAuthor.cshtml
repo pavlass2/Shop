@@ -1,0 +1,14 @@
+﻿@page
+@model EditAuthorModel
+@{
+}
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Author.Id" />
+    <div>
+        <label asp-for="Author.Name"></label>
+        <input asp-for="Author.Name" />
+        <span asp-validation-for="Author.Name"></span>
+    </div>
+
+    <input type="submit" name="save" value="Save" />
+</form>

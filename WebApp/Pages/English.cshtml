@@ -1,0 +1,17 @@
+﻿@page
+@model WebApp.Pages.EnglishModel
+@{
+    ViewData["Title"] = "English";
+}
+
+<div class="flex-container">
+    @{
+        foreach (Item item in Model.Items)
+        {
+            <div>
+                <partial name="_Summary" model="item" />
+            </div>
+        }
+    }
+
+</div>

@@ -1,0 +1,9 @@
+﻿Deploy to azure
+External login
+
+-navigation does not behave correctly on small screens
+-implement visible/hiden for items
+-limit number of items and adminOrders shown per page
+-order process is not complex
+-implement similar items
+-implement tags for items

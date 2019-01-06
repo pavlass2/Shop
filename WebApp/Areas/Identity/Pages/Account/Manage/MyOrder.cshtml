@@ -1,0 +1,85 @@
+﻿@page
+@model MyOrderModel
+
+<div class="one-item-content">
+    <h3>Order data</h3>
+    <form method="post">
+        <table class="order-table">
+            <tr>
+                <td>State</td>
+                <td>@Model.Order.State</td>
+            </tr>
+            <tr>
+                <td>Ordered at</td>
+                <td>@Model.Order.DateTimeOrdered</td>
+            </tr>            
+            <tr>
+                <td>Total price</td>
+                <td>@Model.Order.TotalPrice</td>
+            </tr>            
+            <tr>
+                <td>Phone number</td>
+                <td>@Model.Order.PhoneNumber</td>
+            </tr>
+            <tr>
+                <td>First name</td>
+                <td>@Model.Order.FirstName</td>
+            </tr>
+            <tr>
+                <td>Second name</td>
+                <td>@Model.Order.SecondName</td>
+            </tr>
+            <tr>
+                <td>Street</td>
+                <td>@Model.Order.AddressStreet</td>
+            </tr>
+            <tr>
+                <td>House number</td>
+                <td>@Model.Order.AddressHouseNumber</td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>@Model.Order.AddressCity</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>@Model.Order.AddressCountry</td>
+            </tr>
+            <tr>
+                <td>ZIP</td>
+                <td>@Model.Order.AddressZip</td>
+            </tr>            
+        </table>
+    </form>
+    <table>
+        <h3>Items</h3>
+        @{
+            foreach (ItemInShoppingCart itemInShoppingCart in Model.ShoppingCart.ItemsInShoppingCart)
+            {
+                <tr class="tr-item" id="@itemInShoppingCart.CryptedId">
+                    <td class="in-cart-count" id="@itemInShoppingCart.CryptedId">
+                        @itemInShoppingCart.Count<text>x</text>
+                    </td>
+                    <td>
+                        <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId"><img src="@itemInShoppingCart.PicturePath" alt="No image available" width="100" height="150" /> </a>
+                    </td>
+                    <td class="fill">
+                        <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId">@itemInShoppingCart.Name</a>
+                    </td>
+                    <td>
+                        @{
+                            if (itemInShoppingCart.Count > 1)
+                            {
+                                <div class="in-cart-price" id="@itemInShoppingCart.CryptedId">total $@itemInShoppingCart.Price</div>
+                            }
+                            else
+                            {
+                                <div>$@itemInShoppingCart.Price</div>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

@@ -1,0 +1,60 @@
+﻿@page
+@model WebApp.Pages.ShoppingCartReviewModel
+
+@{
+    ViewData["Title"] = "ShoppingCartReview";
+}
+
+<div class="one-item-content">
+    <h2>Your shopping cart</h2>
+    @{
+        if (Model.ShoppingCart == null)
+        {
+            <div>You have no items in your shopping cart. Try add some</div>
+        }
+        else
+        {
+            foreach (ItemInShoppingCart itemInShoppingCart in Model.ShoppingCart.ItemsInShoppingCart)
+            {
+                
+                <div class="items-in-shopping-cart">
+
+                    <table>
+                        <tr class="tr-item" id="@itemInShoppingCart.CryptedId">
+                            <td class="in-cart-count" id="@itemInShoppingCart.CryptedId">
+                                @itemInShoppingCart.Count<text>x</text>
+                            </td>
+                            <td>
+                                <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId"><img src="@itemInShoppingCart.PicturePath" alt="No image available" width="100" height="150" /> </a>
+                            </td>
+                            <td class="fill">
+                                <a asp-page="Details" asp-route-id="@itemInShoppingCart.CryptedId">@itemInShoppingCart.Name</a>
+                            </td>
+                            <td>
+                                @{
+                                    if (itemInShoppingCart.Count > 1)
+                                    {
+                                        <div class="in-cart-price" id="@itemInShoppingCart.CryptedId">total $@itemInShoppingCart.Price</div>
+                                    }
+                                    else
+                                    {
+                                        <div>$@itemInShoppingCart.Price</div>
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <img src="@System.IO.Path.Combine(System.IO.Path.DirectorySeparatorChar.ToString(), "images", "delete_icon.png")" alt="Delete item" width="50" height="50" title="Remove" class="remove-button" parameter="@itemInShoppingCart.CryptedId" count="@itemInShoppingCart.Count" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            }
+                                    
+
+            <a class="link-as-button" asp-page="SendTo">Proceed with total price of @Model.ShoppingCart.TotalPrice<text>$</text></a>
+        }
+    }
+</div>
+<form method="post"></form>
+
+

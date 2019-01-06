@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "asp.net",
+  "private": true,
+  "devDependencies": {
+    "del": "3.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

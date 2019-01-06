@@ -1,0 +1,14 @@
+﻿@page
+@model AuthorsModel
+@{
+}
+
+<div class="one-item-content">
+    @{
+        foreach (Author author in Model.Authors)
+        {
+            <div><p>@author.Name <a asp-page="EditAuthor" asp-route-id="@author.Id">Edit</a></p></div>
+        }
+    }
+
+</div>

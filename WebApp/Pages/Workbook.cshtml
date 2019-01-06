@@ -1,0 +1,18 @@
+﻿@page
+@model WebApp.Pages.WorkbookModel
+@{
+    ViewData["Title"] = "Workbook";
+}
+
+<div class="flex-container">
+    @{
+        foreach (Item item in Model.Items)
+        {
+            <div>
+                <partial name="_Summary" model="item" />
+            </div>
+        }
+    }
+
+</div>
+

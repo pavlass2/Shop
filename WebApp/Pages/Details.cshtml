@@ -1,0 +1,66 @@
+﻿@page
+@model DetailsModel
+@inject IAuthorizationService AuthorizationService
+@inject IDataAcces DataAcces
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="one-item-content">
+    <p>In category: @Model.Language @Model.Category</p>
+    <h2>@Model.Item.ItemName</h2>
+
+
+    <h4>@DataAcces.GetAuthor(Model.Item.AuthorId).Name</h4><a asp-page="MoreOfAuthor" asp-route-id="@Model.Item.AuthorId">More from this author</a>
+    <br />
+    <div><img src="@Model.Item.PicturePath" alt="No image available" width="300" height="450" /></div>
+    <br />
+    <div>@Model.Item.Descriotion</div>
+    <br />
+    <div><text>$</text>@Model.Item.Price</div>
+    @{
+        if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+        {
+            <h4>Admin menu</h4>
+            <div><a asp-area="Identity" asp-page="Account/Manage/EditItem" asp-route-id="@Model.Item.Id">Edit</a></div>
+            <div><a asp-area="Identity" asp-page="Account/Manage/DeleteItem" asp-route-id="@Model.Item.EncryptedId">Delete</a></div>
+        }
+        else if (User.Identity.IsAuthenticated)
+        {
+            <div class="loader" id="add-to-cart-loader"></div>
+            <div id="details-form">
+
+                <form action="Details" id="addToCart">
+
+                    <input type="hidden" id="cSharpId" value="@Model.Item.EncryptedId" />
+                    <input type="number" id="add-to-cart-number" value="1" />
+                    <input type="submit" id="add-to-cart-submit" value="Add to Cart" />
+
+                    @{
+                        if (Model.SameItemAlreadyInShoppingCart != 0)
+                        {
+                            <a asp-area="Identity" asp-page="Account/Manage/ShoppingCartReview" id="add-to-cart-info" same-item-already-in-shopping-cart="@Model.SameItemAlreadyInShoppingCart"><img src="~/images/shopping-cart_icon.png" width="24" height="24" alt="Shopping cart" />@Model.SameItemAlreadyInShoppingCart<text>x</text> already in your shopping cart</a>
+                        }
+                    }
+
+                </form>
+            </div>
+        }
+        else
+        {
+            <br />
+
+            <div class="form-group-lg">
+                <text>To add item to your shopping cart:</text>
+                <a class="link-as-button" asp-area="Identity" asp-page="/Account/Register" asp-route-returnUrl="@Url.Page("Details", new { id = Model.Item.EncryptedId })">Register</a>
+                <text> or </text>
+                <a class="link-as-button" asp-area="Identity" asp-page="/Account/Login" asp-route-returnUrl="@Url.Page("Details", new { id = Model.Item.EncryptedId })">Login</a>
+            </div>
+        }
+
+        <br />
+
+
+    }
+</div>

@@ -7,31 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DataContext\IdentityMigrations\**" />
     <Compile Remove="Data\Migrations\**" />
-    <Content Remove="DataContext\IdentityMigrations\**" />
     <Content Remove="Data\Migrations\**" />
-    <EmbeddedResource Remove="DataContext\IdentityMigrations\**" />
     <EmbeddedResource Remove="Data\Migrations\**" />
-    <None Remove="DataContext\IdentityMigrations\**" />
     <None Remove="Data\Migrations\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="bundleconfig.json" />
     <Content Remove="wwwroot\scripts\ShoppingCart.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="DataContext\IdentityMigrations\20180830131247_ApplicationUserMigration.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20180830131247_ApplicationUserMigration.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181017162846_FullApplicationUserCreated.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181017162846_FullApplicationUserCreated.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181018210243_ShoppingCartAdded.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181018210243_ShoppingCartAdded.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181201070616_FirstAndSecondNamesAdded.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181201070616_FirstAndSecondNamesAdded.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\IdentityDbContextModelSnapshot.cs" />
   </ItemGroup>
 
   <ItemGroup>

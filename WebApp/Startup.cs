@@ -46,11 +46,11 @@ namespace WebApp
             });
 
             services.AddDbContext<IdentityDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
            
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>()
-                .AddRoleManager<RoleManager<IdentityRole<int>>>()
+            services.AddIdentity<ApplicationUser, ApplicationIdentityRole>()
+                .AddRoleManager<RoleManager<ApplicationIdentityRole>>()
                 .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<IdentityDbContext>();
@@ -70,7 +70,7 @@ namespace WebApp
             services.AddAuthorization();
             
             services.AddDbContext<ShopDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IDataAcces, SqlData>();            
 
@@ -124,7 +124,7 @@ namespace WebApp
         {
             //initiate
             //currently only "Admin" is used 
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole<int>>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationIdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
             string[] roleNames = { "Admin", "Manager", "Customer" };
             IdentityResult roleResult;
@@ -134,7 +134,8 @@ namespace WebApp
             {
                 if (!await roleManager.RoleExistsAsync(roleName))
                 {
-                    roleResult = await roleManager.CreateAsync(new IdentityRole<int>(roleName));
+                    roleResult = await roleManager.CreateAsync(new ApplicationIdentityRole(roleName));
+                    
                 }
             }
 

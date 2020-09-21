@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-WebApp-9962B2CE-7727-4A8C-8BA1-536AE2AFB004</UserSecretsId>
     <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
   </PropertyGroup>
@@ -23,28 +23,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="DataContext\IdentityMigrations\20180830131247_ApplicationUserMigration.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20180830131247_ApplicationUserMigration.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181017162846_FullApplicationUserCreated.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181017162846_FullApplicationUserCreated.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181018210243_ShoppingCartAdded.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181018210243_ShoppingCartAdded.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181201070616_FirstAndSecondNamesAdded.cs" />
-    <Compile Include="DataContext\IdentityMigrations\20181201070616_FirstAndSecondNamesAdded.Designer.cs" />
-    <Compile Include="DataContext\IdentityMigrations\IdentityDbContextModelSnapshot.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
-    <PackageReference Include="NWebsec.AspNetCore.Core" Version="2.0.0" />
-    <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="2.0.0" />
-    <PackageReference Include="NWebsec.AspNetCore.Mvc" Version="2.0.0" />
-    <PackageReference Include="NWebsec.AspNetCore.Mvc.TagHelpers" Version="2.0.0" />
-  </ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" /><PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" PrivateAssets="All" />
+    <PackageReference Include="NWebsec.AspNetCore.Core" Version="3.0.1" />
+    <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
+    <PackageReference Include="NWebsec.AspNetCore.Mvc" Version="3.0.0" />
+    <PackageReference Include="NWebsec.AspNetCore.Mvc.TagHelpers" Version="3.0.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.0" /></ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="DataContext\IdentityMigrations\" />
+    <Folder Include="Migrations\IdentityDb\" />
     <Folder Include="Reports\" />
   </ItemGroup>
 

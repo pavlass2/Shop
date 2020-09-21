@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 using System.IO;
 using WebApp.Models;
 
@@ -11,7 +9,6 @@ namespace WebApp
         //Picture is stored in "wwwroot/images/[name of the item]"
         //retrospectivaly I think that storing the image its self in the database could be the better aproach 
         private string _picturePath;
-        private decimal _price;
 
         [Display(Name = "Author")]
         public string AuthorId { get; set; }
@@ -20,8 +17,6 @@ namespace WebApp
         /// Identity key
         /// </summary>
         [Required]
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string EncryptedId { get; set; }
@@ -30,7 +25,7 @@ namespace WebApp
         /// Name of the item
         /// </summary>        
         [Required, StringLength(255)]
-        [Display(Name = "Item name")]
+        [Display(Name="Item name")]
         public string ItemName { get; set; }
 
         /// <summary>
@@ -47,7 +42,7 @@ namespace WebApp
         /// Item description
         /// </summary>
         public string Descriotion { get; set; }
-
+        
         /// <summary>
         /// Path to the picture of the item
         /// </summary>
@@ -67,12 +62,12 @@ namespace WebApp
             {
                 _picturePath = value;
             }
-        }
-
+        }        
+        
         /// <summary>
         /// Price of the item
         /// </summary>
-        public decimal Price { get => Math.Round(_price, 2); set => _price = Math.Round(value, 2); }
+        public decimal Price { get; set; }
 
         public override string ToString()
         {

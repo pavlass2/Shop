@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
 namespace WebApp.Models
 {
     public class ApplicationUser : IdentityUser<int>
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public override int Id { get; set; }
-
         private string _addressCountry;
         private string _addressCity;
         private string _addressStreet;

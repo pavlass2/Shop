@@ -16,14 +16,14 @@ namespace WebApp.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<ApplicationIdentityRole> _roleManager;
+        private readonly RoleManager<IdentityRole<int>> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            RoleManager<ApplicationIdentityRole> roleManager,
+            RoleManager<IdentityRole<int>> roleManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
